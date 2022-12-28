@@ -4,17 +4,18 @@ import time
 import atexit
 import econInput
 import multiprocessing
-import subprocess
-import econCalc
-import econInputDirScanner
-import econArchiver
+#import econCalc
+#import econInputDirScanner
 import sys
 import logging
 import os
 from threading import Thread
 from time import sleep
 
-logging.basicConfig(filename='./econ.log',level=logging.INFO)
+OUTPUT_LOG="./data/econ.log"
+logging.basicConfig(filename=OUTPUT_LOG,level=logging.INFO)
+
+# Process input
 
 def split(filehandler, delimiter=',', row_limit=1000, output_name_template='./input/input_%s.csv', output_path='.', keep_headers=True):
 	inputList = []
@@ -42,8 +43,6 @@ def split(filehandler, delimiter=',', row_limit=1000, output_name_template='./in
 def exit_handler():
 	logging.info("["+str(calendar.timegm(time.gmtime()))+"] Exiting normally...")
 
-atexit.register(exit_handler)
-
 def main(argv):
 	inputObjArray = []
 	inputDirScannerObj = econInputDirScanner.InputDirScanner("./input/")
@@ -63,9 +62,11 @@ def main(argv):
 			except ValueError:
 	   			logging.info("["+str(calendar.timegm(time.gmtime()))+"] Ignoring input file header")
 
+atexit.register(exit_handler)
+
 if __name__ == '__main__':
-	logging.info("["+str(calendar.timegm(time.gmtime()))+"] Executing calculation with " + sys.argv[0] + " and " + sys.argv[1] + " and " + sys.argv[2] + " and " + sys.argv[3])
+	#logging.info("["+str(calendar.timegm(time.gmtime()))+"] Executing calculation with " + sys.argv[0] + " and " + sys.argv[1] + " and " + sys.argv[2] + " and " + sys.argv[3])
 	count = multiprocessing.cpu_count()
 	pool = multiprocessing.Pool(processes=count)
 	inList = split(open(sys.argv[1],'r'),",",round((int(sys.argv[2])-1)/count))
-	print pool.map(main, inList)
+	#print pool.map(main, inList)
