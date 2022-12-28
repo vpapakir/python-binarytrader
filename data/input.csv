@@ -1,0 +1,2 @@
+Case,Weekend Timeout,Max Spread,Activity Criterion,Invert EMA,BuyRSI,BuyEMADist,SellRSI,SellEMADist,Take Profit,Stop Loss
+1,300,150,0.00008,-1,25,-0.005,75,0.005,80,150
