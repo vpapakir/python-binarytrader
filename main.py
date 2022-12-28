@@ -69,4 +69,4 @@ if __name__ == '__main__':
 	count = multiprocessing.cpu_count()
 	pool = multiprocessing.Pool(processes=count)
 	inList = split(open(sys.argv[1],'r'),",",round((int(sys.argv[2])-1)/count))
-	print pool.map(main, inList)
+	#print pool.map(main, inList)
