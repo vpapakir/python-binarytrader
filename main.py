@@ -65,8 +65,8 @@ def main(argv):
 atexit.register(exit_handler)
 
 if __name__ == '__main__':
-	#logging.info("["+str(calendar.timegm(time.gmtime()))+"] Executing calculation with " + sys.argv[0] + " and " + sys.argv[1] + " and " + sys.argv[2] + " and " + sys.argv[3])
+	logging.info("["+str(calendar.timegm(time.gmtime()))+"] Executing calculation with " + sys.argv[0] + " and " + sys.argv[1] + " and " + sys.argv[2] + " and " + sys.argv[3])
 	count = multiprocessing.cpu_count()
 	pool = multiprocessing.Pool(processes=count)
 	inList = split(open(sys.argv[1],'r'),",",round((int(sys.argv[2])-1)/count))
-	#print pool.map(main, inList)
+	print pool.map(main, inList)
